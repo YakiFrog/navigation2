@@ -124,7 +124,7 @@ controller_server:
     min_x_velocity_threshold: 0.1 # 最小ｘ軸速度の閾値 # default: 0.001 (0.1の入力を流すとバグるのでこれは0.1で固定)
     min_y_velocity_threshold: 0.5 # 最小ｙ軸速度の閾値
     min_theta_velocity_threshold: 0.1 # 最小θ速度の閾値
-    failure_tolerance: 0.5 # 失敗許容度[m]
+    failure_tolerance: 0.3 # 失敗許容度[m] xy_goal_toleranceより小さくすること
     progress_checker_plugin: "progress_checker"
     goal_checker_plugins: ["general_goal_checker"] # "precise_goal_checker"
     controller_plugins: ["FollowPath"]
@@ -277,7 +277,7 @@ map_saver:
 
 planner_server:
   ros__parameters:
-    expected_planner_frequency: 10.0 # default: 10.0
+    expected_planner_frequency: 20.0 # default: 20.0
     use_sim_time: True
     planner_plugins: ["GridBased"]
     GridBased:
@@ -334,14 +334,14 @@ waypoint_follower:
     wait_at_waypoint:
       plugin: "nav2_waypoint_follower::WaitAtWaypoint"
       enabled: True
-      waypoint_pause_duration: 200
+      waypoint_pause_duration: 100
 
 velocity_smoother:
   ros__parameters:
     use_sim_time: True
     smoothing_frequency: 20.0
     scale_velocities: False
-    feedback: "OPEN_LOOP" # デフォルトは"OPEN_LOOP"
+    feedback: "OPEN_LOOP" # デフォルトは"OPEN_LOOP" CLOSED_LOOPにすると動かない
     max_velocity: [0.40, 0.0, 0.4]
     min_velocity: [-0.40, 0.0, -0.4]
     max_accel: [0.30, 0.0, 0.35]
