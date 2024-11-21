@@ -137,8 +137,8 @@ controller_server:
     general_goal_checker:
       stateful: True
       plugin: "nav2_controller::SimpleGoalChecker"
-      xy_goal_tolerance: 0.5 # xyゴール許容度[m] default: 0.25
-      yaw_goal_tolerance: 0.5 # yawゴール許容度[rad] default: 0.25
+      xy_goal_tolerance: 0.25 # xyゴール許容度[m] default: 0.25
+      yaw_goal_tolerance: 0.25 # yawゴール許容度[rad] default: 0.25
     # DWB parameters
     FollowPath:
       plugin: "dwb_core::DWBLocalPlanner"
@@ -339,7 +339,7 @@ waypoint_follower:
 velocity_smoother:
   ros__parameters:
     use_sim_time: True
-    smoothing_frequency: 40.0 # default: 20.0
+    smoothing_frequency: 20.0 # default: 20.0 controller_frequencyと同じ値にしたほうがいい
     scale_velocities: False # default: False Trueにして一回ガタついたので，Falseにしている
     feedback: "OPEN_LOOP" # デフォルトは"OPEN_LOOP" CLOSED_LOOPにすると動かない
     max_velocity: [0.40, 0.0, 0.4]
@@ -347,6 +347,6 @@ velocity_smoother:
     max_accel: [0.30, 0.0, 0.35]
     max_decel: [-0.30, 0.0, -0.35]
     odom_topic: "odom"
-    odom_duration: 0.1
+    odom_duration: 0.1 # 
     deadband_velocity: [0.0, 0.0, 0.0]
     velocity_timeout: 1.0
