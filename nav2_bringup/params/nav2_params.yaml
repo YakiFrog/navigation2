@@ -31,8 +31,8 @@ amcl:
     odom_frame_id: "odom"
     pf_err: 0.05
     pf_z: 0.99
-    recovery_alpha_fast: 0.1 # リカバリのα値 0.4 -> 0.2 0.4がでかすぎた
-    recovery_alpha_slow: 0.05 # リカバリのα値 0.2 -> 0.1
+    recovery_alpha_fast: 0.05 # リカバリのα値 0.4 -> 0.2 0.4がでかすぎた
+    recovery_alpha_slow: 0.025 # リカバリのα値 0.2 -> 0.1
     resample_interval: 1
     robot_model_type: "nav2_amcl::DifferentialMotionModel"
     save_pose_rate: 0.5
@@ -316,7 +316,7 @@ behavior_server:
     robot_base_frame: base_footprint # default: base_link
     transform_tolerance: 0.1
     use_sim_time: true
-    simulate_ahead_time: 3.0 # どんくらい先まで予測するか[s] default: 2.0
+    simulate_ahead_time: 4.0 # どんくらい先まで予測するか[s] default: 2.0
     max_rotational_vel: 1.0
     min_rotational_vel: 0.4
     rotational_acc_lim: 3.2
@@ -334,7 +334,7 @@ waypoint_follower:
     wait_at_waypoint:
       plugin: "nav2_waypoint_follower::WaitAtWaypoint"
       enabled: True
-      waypoint_pause_duration: 100
+      waypoint_pause_duration: 200 # ウェイポイント到達後の待機時間[ms] default: 200
 
 velocity_smoother:
   ros__parameters:
