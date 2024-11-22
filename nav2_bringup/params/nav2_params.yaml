@@ -25,8 +25,8 @@ amcl:
 
     # パーティクルフィルタのパラメータ
     max_beams: 60 # ビームの数
-    max_particles: 2000 # パーティクルの数
-    min_particles: 500 # パーティクルの最小数
+    max_particles: 1000 # パーティクルの数 default: 2000
+    min_particles: 250 # パーティクルの最小数 default: 500
 
     odom_frame_id: "odom"
     pf_err: 0.05
@@ -143,14 +143,14 @@ controller_server:
     FollowPath:
       plugin: "dwb_core::DWBLocalPlanner"
       debug_trajectory_details: True
-      min_vel_x: 0.0
+      min_vel_x: 0.025 # default: 0.0 -> 0.1 最低速度を設定しないと，動かない速度出力がされる．
       min_vel_y: 0.0
       max_vel_x: 0.40 # default: 0.26 -> 0.40
-      max_vel_y: 0.0
+      max_vel_y: 0.0 # 対抗２輪において，これは設定しなくていい
       max_vel_theta: 0.40 # default: 1.0 -> 0.40
-      min_speed_xy: 0.0
+      min_speed_xy: 0.05 # default: 0.0 -> 0.1
       max_speed_xy: 0.40 # default: 0.26 -> 0.40
-      min_speed_theta: 0.0
+      min_speed_theta: 0.10 # default: 0.0 -> 0.2 0.2だと，speedが0.05以上になる．(diff_drive.cpp 167行目 ~)
       # Add high threshold velocity for turtlebot 3 issue.
       # https://github.com/ROBOTIS-GIT/turtlebot3_simulations/issues/75
       acc_lim_x: 0.50 # default: 2.5 -> 0.50
@@ -163,11 +163,11 @@ controller_server:
       vy_samples: 5
       vtheta_samples: 20
       sim_time: 1.7
-      linear_granularity: 0.05
-      angular_granularity: 0.025
+      linear_granularity: 0.01 #
+      angular_granularity: 0.01
       transform_tolerance: 0.2
       xy_goal_tolerance: 0.50 # ゴール判定の許容度[m] default: 0.25
-      trans_stopped_velocity: 0.25 # 速度がこの値以下の場合、停止とみなす[m/s] default: 0.1
+      trans_stopped_velocity: 0.05 # 速度がこの値以下の場合、停止とみなす[m/s] default: 0.1
       short_circuit_trajectory_evaluation: True
       stateful: True
       critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist"]
