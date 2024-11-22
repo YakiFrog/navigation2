@@ -15,7 +15,7 @@ amcl:
     beam_skip_distance: 0.5 # ビームスキップの距離[m]
     beam_skip_error_threshold: 0.9 # ビームスキップのエラー閾値
     beam_skip_threshold: 0.3 # ビームスキップの閾値
-    do_beamskip: false # ビームスキップを行うかどうか
+    do_beamskip: false # ビームスキップを行うかどうか 
 
     lambda_short: 0.1
     laser_likelihood_max_dist: 100.0 # レーザの尤度の最大距離[m] default: 2.0
@@ -163,8 +163,8 @@ controller_server:
       vy_samples: 5
       vtheta_samples: 20
       sim_time: 1.7
-      linear_granularity: 0.01 #
-      angular_granularity: 0.01
+      linear_granularity: 0.01 # default: 0.05
+      angular_granularity: 0.01 # default: 0.025
       transform_tolerance: 0.2
       xy_goal_tolerance: 0.50 # ゴール判定の許容度[m] default: 0.25
       trans_stopped_velocity: 0.05 # 速度がこの値以下の場合、停止とみなす[m/s] default: 0.1
@@ -277,7 +277,7 @@ map_saver:
 
 planner_server:
   ros__parameters:
-    expected_planner_frequency: 20.0 # default: 20.0
+    expected_planner_frequency: 20.0 # default: 20.0 これはあげないほうがいい．上げると走行中に途中で固まったりする．
     use_sim_time: True
     planner_plugins: ["GridBased"]
     GridBased:
