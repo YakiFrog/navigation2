@@ -385,8 +385,8 @@ velocity_smoother:
     feedback: "OPEN_LOOP" # デフォルトは"OPEN_LOOP" CLOSED_LOOPにすると動かない
     max_velocity: [0.40, 0.0, 0.20]
     min_velocity: [-0.40, 0.0, -0.20]
-    max_accel: [0.10, 0.0, 0.10] # default: [0.30, 0.0, 0.35]
-    max_decel: [-0.10, 0.0, -0.10] # default: [-0.30, 0.0, -0.35]
+    max_accel: [0.30, 0.0, 0.15] # default: [0.30, 0.0, 0.35]
+    max_decel: [-0.30, 0.0, -0.15] # default: [-0.30, 0.0, -0.35]
     odom_topic: "odom"
     odom_duration: 0.1
     deadband_velocity: [0.0, 0.0, 0.0]
